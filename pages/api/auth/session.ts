@@ -1,9 +1,12 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
+import {applyApiCookie} from 'next-universal-cookie';
 import {accessTokenName} from 'utils/auth';
 
 const TEST_VALID_TOKEN = 'base64_valid';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  applyApiCookie(req, res);
+
   const authorization = req.headers['authorization'];
   const cookieAuthorization = req.cookies[accessTokenName];
 
@@ -17,7 +20,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       });
     } else {
       // Invalid or expired JWT
-      res.status(401);
+      if (authorization) {
+        res.status(401);
+      }
+      res.clearCookie(accessTokenName);
+      res.status(204);
       res.end();
     }
   }

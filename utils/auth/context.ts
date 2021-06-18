@@ -14,7 +14,7 @@ export const useAuth = () => {
   const context = useContext(AuthContext);
 
   if (context == null) {
-    throw new Error(`useSession/useAuth must be used inside a AuthProvider.`);
+    throw new Error(`Missing <AuthProvider />.`);
   }
 
   return context;

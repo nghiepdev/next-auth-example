@@ -34,15 +34,18 @@ const Layout = ({children}: Props) => {
       <div>
         {session ? (
           <Link href='/signout'>
-            <a>Sign out</a>
+            <a target='_top'>Sign out</a>
           </Link>
         ) : (
           router.pathname !== '/signin' && (
             <div>
-              You are not signed in{' '}
-              <Link href='/signin'>
-                <a>Sign in</a>
-              </Link>
+              <hr />
+              <strong>
+                You are not signed in{' '}
+                <Link href='/signin'>
+                  <a>Sign in</a>
+                </Link>
+              </strong>
             </div>
           )
         )}
