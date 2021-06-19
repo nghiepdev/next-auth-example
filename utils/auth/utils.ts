@@ -17,7 +17,6 @@ export async function getSession(ctx: GetServerSidePropsContext) {
       const data = await ky
         .get(`http://${ctx.req.headers.host}/api/auth/session`, {
           headers: {
-            'Content-Type': 'application/json',
             Authorization: `Bearer ${accessToken}`,
           },
         })
@@ -41,13 +40,7 @@ export const useSession = () => {
   useEffect(() => {
     const fetchAuthSession = async () => {
       try {
-        const data = await ky
-          .get('/api/auth/session', {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          })
-          .json<Me>();
+        const data = await ky.get('/api/auth/session').json<Me>();
 
         setSession(data);
         state = 'done';

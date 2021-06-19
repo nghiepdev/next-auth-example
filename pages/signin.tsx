@@ -9,10 +9,9 @@ const SignIn = () => {
   const handleSignIn = async () => {
     const data = await ky
       .post('/api/auth', {
-        headers: {
-          'Content-Type': 'application/json',
+        json: {
+          // credential
         },
-        json: {},
       })
       .json<Me>();
 
