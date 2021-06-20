@@ -17,7 +17,7 @@ export async function getSession(ctx: GetServerSidePropsContext) {
       const data = await ky
         .get(`http://${ctx.req.headers.host}/api/auth/session`, {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: accessToken,
           },
         })
         .json<Me>();

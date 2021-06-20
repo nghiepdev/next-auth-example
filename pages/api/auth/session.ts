@@ -12,19 +12,15 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   if (req.method === 'GET') {
     if (
-      authorization === `Bearer ${TEST_VALID_TOKEN}` ||
+      authorization === TEST_VALID_TOKEN ||
       cookieAuthorization === TEST_VALID_TOKEN
     ) {
       res.json({
         email: 'john_doe@gmail.com',
       });
     } else {
-      // Invalid or expired JWT
-      if (authorization) {
-        res.status(401);
-      }
+      res.status(authorization ? 401 : 204);
       res.clearCookie(accessTokenName);
-      res.status(204);
       res.end();
     }
   }
