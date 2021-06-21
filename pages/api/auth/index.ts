@@ -11,7 +11,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       path: '/',
       maxAge: 999999,
       httpOnly: true,
-      secure: !!req.headers['x-forwarded-proto'],
+      secure: req.headers['x-forwarded-proto'] === 'https',
     });
 
     res.json({
