@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 
-import {AuthProvider as BaseAuthProvider} from './context';
+import {AuthProvider as BaseAuthProvider} from './Context';
 import {AuthProviderProps} from './types';
 
 const AuthProvider = ({

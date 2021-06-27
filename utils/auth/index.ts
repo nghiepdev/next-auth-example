@@ -1,2 +1,3 @@
 export {default as AuthProvider} from './Provider';
-export * from './utils';
+export * from './get-session';
+export * from './use-session';

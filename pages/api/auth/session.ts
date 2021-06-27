@@ -1,5 +1,6 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import {applyApiCookie} from 'next-universal-cookie';
+
 import {accessTokenName} from 'utils/auth';
 
 const TEST_VALID_TOKEN = 'base64_valid';

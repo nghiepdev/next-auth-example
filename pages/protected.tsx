@@ -1,6 +1,6 @@
 import {GetServerSideProps} from 'next';
-import {ServerSideProps} from 'types/types';
 
+import {ServerSideProps} from 'types/types';
 import {getSession, useSession} from 'utils/auth';
 
 export const getServerSideProps: GetServerSideProps<ServerSideProps> =
