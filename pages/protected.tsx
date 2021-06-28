@@ -8,7 +8,6 @@ export const getServerSideProps: GetServerSideProps<ServerSideProps> =
     return {
       props: {
         isProtected: true,
-        cookie: ctx.req.headers.cookie ?? '',
         session: await getSession(ctx),
       },
     };

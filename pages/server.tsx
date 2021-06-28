@@ -7,7 +7,6 @@ export const getServerSideProps: GetServerSideProps<ServerSideProps> =
   async ctx => {
     return {
       props: {
-        cookie: ctx.req.headers.cookie ?? '',
         session: await getSession(ctx),
       },
     };
