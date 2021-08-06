@@ -1,4 +1,4 @@
-import {Me} from 'utils/auth/types';
+import {Me} from 'lib/auth/types';
 
 export interface ServerSideProps {
   isProtected?: boolean;

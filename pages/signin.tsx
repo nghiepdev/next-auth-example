@@ -1,7 +1,7 @@
 import ky from 'ky-universal';
 import {useRouter} from 'next/router';
 
-import {Me} from 'utils/auth/types';
+import {Me} from 'lib/auth/types';
 
 const SignIn = () => {
   const router = useRouter();

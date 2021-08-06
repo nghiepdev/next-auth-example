@@ -1,4 +1,4 @@
-import {useSession} from 'utils/auth';
+import {useSession} from 'lib/auth';
 
 const Home = () => {
   const session = useSession();

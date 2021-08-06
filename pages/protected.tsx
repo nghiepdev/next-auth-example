@@ -1,7 +1,7 @@
 import {GetServerSideProps} from 'next';
 
 import {ServerSideProps} from 'types/types';
-import {getSession, useSession} from 'utils/auth';
+import {getSession, useSession} from 'lib/auth';
 
 export const getServerSideProps: GetServerSideProps<ServerSideProps> =
   async ctx => {

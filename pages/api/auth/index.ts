@@ -1,7 +1,7 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import {applyApiCookie} from 'next-universal-cookie';
 
-import {accessTokenName} from 'utils/auth';
+import {accessTokenName} from 'lib/auth';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   applyApiCookie(req, res);

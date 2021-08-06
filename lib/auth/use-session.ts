@@ -1,8 +1,8 @@
 import {useEffect, useRef} from 'react';
 import ky from 'ky-universal';
 
-import {Me} from 'utils/auth/types';
-import {useAuthContext} from 'utils/auth/Context';
+import {Me} from 'lib/auth/types';
+import {useAuthContext} from 'lib/auth/Context';
 
 let state: 'idle' | 'fetching' | 'done' | 'error' = 'idle';
 export const useSession = () => {

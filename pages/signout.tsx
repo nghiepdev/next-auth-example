@@ -1,7 +1,7 @@
 import {GetServerSideProps} from 'next';
 import {applyServerSideCookie} from 'next-universal-cookie';
 
-import {accessTokenName} from 'utils/auth';
+import {accessTokenName} from 'lib/auth';
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   applyServerSideCookie(ctx.req, ctx.res);

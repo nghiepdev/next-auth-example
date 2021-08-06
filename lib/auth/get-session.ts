@@ -2,7 +2,7 @@ import {GetServerSidePropsContext} from 'next';
 import {applyServerSideCookie} from 'next-universal-cookie';
 import ky from 'ky-universal';
 
-import {Me} from 'utils/auth/types';
+import {Me} from 'lib/auth/types';
 
 export const accessTokenName = 'auth_session';
 
