@@ -1,35 +1,35 @@
-import {useEffect, useRef} from 'react';
+import {useEffect} from 'react';
+import {useRouter} from 'next/router';
 import ky from 'ky-universal';
 
 import {Me} from 'lib/auth/types';
 import {useAuthContext} from 'lib/auth/Context';
 
-let state: 'idle' | 'fetching' | 'done' | 'error' = 'idle';
+let globalFetching = false;
+
 export const useSession = () => {
-  const [session, setSession] = useAuthContext();
+  const router = useRouter();
+  const [session, setAuthContext] = useAuthContext();
   const loggedIn = !!session;
-  const isFetchAuth = useRef(loggedIn);
 
   useEffect(() => {
     const fetchAuthSession = async () => {
       try {
+        globalFetching = true;
         const data = await ky.get('/api/auth/session').json<Me>();
 
-        setSession(data);
-        state = 'done';
-      } catch {
-        setSession(undefined);
-        state = 'error';
+        setAuthContext(data);
+      } catch (error) {
+        const statusCode = error.response?.status;
+        if (statusCode === 401 || statusCode === 403) {
+          router.replace(`/signin?next=${encodeURIComponent(router.asPath)}`);
+        }
       } finally {
-        isFetchAuth.current = true;
+        globalFetching = false;
       }
     };
 
-    if (
-      isFetchAuth.current === false &&
-      (state === 'idle' || state === 'error')
-    ) {
-      state = 'fetching';
+    if (globalFetching === false && loggedIn === false) {
       fetchAuthSession();
     }
 
