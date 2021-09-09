@@ -11,6 +11,48 @@ It can be found at https://next-auth-example-psi.vercel.app
 - Loading the user on the server side
 - Protected page
 
+## Use case
+
+### Get session information
+
+```jsx
+import {useSession} from 'core/authenticated';
+
+const MyComponent = () => {
+  const session = useSession();
+
+  return <div>{session?.me.email}</div>;
+};
+```
+
+### Render session on server-side
+
+```ts
+import * as wrapper from 'core/wrapper';
+
+export const getServerSideProps = wrapper.getServerSideProps({
+  isProtected: false, // <== HERE
+})(async context => {
+  return {
+    props: {},
+  };
+});
+```
+
+### To protected of pages
+
+```ts
+import * as wrapper from 'core/wrapper';
+
+export const getServerSideProps = wrapper.getServerSideProps({
+  isProtected: true, // <== HERE
+})(async context => {
+  return {
+    props: {},
+  };
+});
+```
+
 ## Alternatives
 
 - [NextAuth.js] (https://github.com/nextauthjs/next-auth)
