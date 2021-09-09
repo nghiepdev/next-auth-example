@@ -10,6 +10,12 @@ const Layout = ({children}: Props) => {
 
   return (
     <div>
+      <h1>
+        Authentication In Next.js - Repo{' '}
+        <a href='https://github.com/nghiepit/next-auth-example'>
+          next-auth-example
+        </a>
+      </h1>
       <div>
         <ul>
           <li>
