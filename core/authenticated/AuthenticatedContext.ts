@@ -1,11 +1,13 @@
 import {createContext, useContext} from 'react';
 
-import {Me} from './types';
+import {SessionState} from './types';
 
 const AuthContext = createContext<
-  | [Me | undefined, React.Dispatch<React.SetStateAction<Me | undefined>>]
-  | undefined
->(undefined);
+  | [
+      SessionState | undefined,
+      React.Dispatch<React.SetStateAction<SessionState | undefined>>
+    ]
+>(null!);
 
 export const AuthProvider = AuthContext.Provider;
 

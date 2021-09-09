@@ -1,7 +1,7 @@
 import ky from 'ky-universal';
 import {useRouter} from 'next/router';
 
-import {Me} from 'lib/auth/types';
+import {SessionState} from 'core/authenticated';
 
 const SignIn = () => {
   const router = useRouter();
@@ -10,10 +10,10 @@ const SignIn = () => {
     const data = await ky
       .post('/api/auth', {
         json: {
-          // credential
+          // credentials
         },
       })
-      .json<Me>();
+      .json<SessionState>();
 
     console.log(data);
 

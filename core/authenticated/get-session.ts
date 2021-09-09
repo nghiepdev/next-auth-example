@@ -2,7 +2,7 @@ import {GetServerSidePropsContext} from 'next';
 import {applyServerSideCookie} from 'next-universal-cookie';
 import ky from 'ky-universal';
 
-import {Me} from 'lib/auth/types';
+import {SessionState} from './types';
 
 export const accessTokenName = 'auth_session';
 
@@ -18,7 +18,7 @@ export async function getSession(ctx: GetServerSidePropsContext) {
             Authorization: accessToken,
           },
         })
-        .json<Me>();
+        .json<SessionState>();
 
       return data;
     } catch (error) {

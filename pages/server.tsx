@@ -1,16 +1,13 @@
-import {GetServerSideProps} from 'next';
+import * as wrapper from 'core/wrapper';
+import {useSession} from 'core/authenticated';
 
-import {ServerSideProps} from 'types/types';
-import {getSession, useSession} from 'lib/auth';
-
-export const getServerSideProps: GetServerSideProps<ServerSideProps> =
-  async ctx => {
-    return {
-      props: {
-        session: await getSession(ctx),
-      },
-    };
+export const getServerSideProps = wrapper.getServerSideProps({
+  isProtected: false,
+})(async context => {
+  return {
+    props: {},
   };
+});
 
 const Server = () => {
   const session = useSession();
@@ -18,7 +15,7 @@ const Server = () => {
   return (
     <div>
       <h1>Server page</h1>
-      <strong>Signed in as</strong>: {session?.email}
+      <strong>Signed in as</strong>: {session?.me.email}
     </div>
   );
 };

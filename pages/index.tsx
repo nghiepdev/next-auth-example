@@ -1,4 +1,4 @@
-import {useSession} from 'lib/auth';
+import {useSession} from 'core/authenticated';
 
 const Home = () => {
   const session = useSession();
@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div>
       <h1>Client page</h1>
-      <strong>Signed in as</strong>: {session?.email}
+      <strong>Signed in as</strong>: {session?.me.email}
     </div>
   );
 };

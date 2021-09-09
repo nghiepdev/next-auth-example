@@ -1,7 +1,7 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import {applyApiCookie} from 'next-universal-cookie';
 
-import {accessTokenName} from 'lib/auth';
+import {accessTokenName} from 'core/authenticated';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   applyApiCookie(req, res);
@@ -15,7 +15,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     });
 
     res.json({
-      email: 'john_doe@gmail.com',
+      me: {
+        email: 'john_doe@gmail.com',
+      },
+      access_token: 'base64_valid',
     });
   } else {
     res.status(401);

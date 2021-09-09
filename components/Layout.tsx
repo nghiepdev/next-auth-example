@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 
-import {useSession} from 'lib/auth';
+import {useSession} from 'core/authenticated';
 type Props = React.PropsWithChildren<{}>;
 
 const Layout = ({children}: Props) => {
@@ -33,9 +33,7 @@ const Layout = ({children}: Props) => {
 
       <div>
         {session ? (
-          <Link href='/signout'>
-            <a target='_top'>Sign out</a>
-          </Link>
+          <a href='/logout'>Sign out</a>
         ) : (
           router.pathname !== '/signin' && (
             <div>

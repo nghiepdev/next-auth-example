@@ -1,7 +1,7 @@
 import {GetServerSideProps} from 'next';
 import {applyServerSideCookie} from 'next-universal-cookie';
 
-import {accessTokenName} from 'lib/auth';
+import {accessTokenName} from 'core/authenticated';
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   applyServerSideCookie(ctx.req, ctx.res);
@@ -16,8 +16,8 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   };
 };
 
-const SignOut = () => {
+const Logout = () => {
   return null;
 };
 
-export default SignOut;
+export default Logout;

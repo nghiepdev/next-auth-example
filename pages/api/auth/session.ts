@@ -1,7 +1,7 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import {applyApiCookie} from 'next-universal-cookie';
 
-import {accessTokenName} from 'lib/auth';
+import {accessTokenName} from 'core/authenticated';
 
 const TEST_VALID_TOKEN = 'base64_valid';
 
@@ -17,7 +17,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       cookieAuthorization === TEST_VALID_TOKEN
     ) {
       res.json({
-        email: 'john_doe@gmail.com',
+        me: {
+          email: 'john_doe@gmail.com',
+        },
+        access_token: TEST_VALID_TOKEN,
       });
     } else {
       res.status(authorization ? 401 : 204);
