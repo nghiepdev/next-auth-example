@@ -23,7 +23,7 @@ export const useSession = () => {
         }
       } catch (error: any) {
         const statusCode = error.response?.status;
-        if (statusCode === 401 || statusCode === 403) {
+        if (statusCode === 401) {
           router.replace(`/signin?next=${encodeURIComponent(router.asPath)}`);
         }
       } finally {

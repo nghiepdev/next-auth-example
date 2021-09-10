@@ -7,7 +7,8 @@ const AuthContext = createContext<
       SessionState | undefined,
       React.Dispatch<React.SetStateAction<SessionState | undefined>>
     ]
->(null!);
+  | null
+>(null);
 
 export const AuthProvider = AuthContext.Provider;
 

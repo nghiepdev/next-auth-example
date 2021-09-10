@@ -5,8 +5,7 @@ import {
   Redirect,
 } from 'next';
 
-import {getSession} from 'core/authenticated';
-import {SessionState} from 'core/authenticated';
+import {SessionState, getSession} from 'core/authenticated';
 
 type WrapperOptions =
   | {isProtected: false}
