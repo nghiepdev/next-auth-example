@@ -1,11 +1,14 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import {applyApiCookie} from 'next-universal-cookie';
 
-import {accessTokenName} from 'core/authenticated';
+import {accessTokenName, SessionState} from 'core/authenticated';
 
 const TEST_VALID_TOKEN = 'base64_valid';
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<SessionState>
+) {
   applyApiCookie(req, res);
 
   const authorization = req.headers['authorization'];

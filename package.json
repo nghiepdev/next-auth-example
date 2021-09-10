@@ -11,15 +11,15 @@
   "dependencies": {
     "ky": "~0.25.0",
     "ky-universal": "~0.8.0",
-    "next": "^11.1.0",
-    "next-universal-cookie": "^3.0.0",
+    "next": "^11.1.2",
+    "next-universal-cookie": "^3.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "@types/react": "17.0.18",
+    "@types/react": "17.0.20",
     "eslint": "7.32.0",
-    "eslint-config-next": "11.1.0",
-    "typescript": "4.3.5"
+    "eslint-config-next": "11.1.2",
+    "typescript": "4.4.2"
   }
 }

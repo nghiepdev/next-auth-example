@@ -1,9 +1,12 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import {applyApiCookie} from 'next-universal-cookie';
 
-import {accessTokenName} from 'core/authenticated';
+import {accessTokenName, SessionState} from 'core/authenticated';
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<SessionState>
+) {
   applyApiCookie(req, res);
 
   if (req.method === 'POST') {
