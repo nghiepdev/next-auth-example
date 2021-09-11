@@ -28,7 +28,10 @@ export default function handler(
     } else {
       res.status(authorization ? 401 : 204);
       res.clearCookie(accessTokenName);
-      res.end();
     }
+  } else {
+    res.status(204);
   }
+
+  res.end();
 }

@@ -3,7 +3,7 @@ import {useRouter} from 'next/router';
 import ky from 'ky-universal';
 
 import {SessionState} from './types';
-import {useAuthContext} from './AuthenticatedContext';
+import {useAuthContext} from './AuthContext';
 
 let globalFetching = false;
 
