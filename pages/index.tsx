@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div>
       <h1>Client page</h1>
-      <strong>Signed in as</strong>: {session?.me.email}
+      <strong>Signed in as</strong>: <mark>{session?.me.email}</mark>
     </div>
   );
 };

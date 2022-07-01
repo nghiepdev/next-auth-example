@@ -1,33 +1,42 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import {applyApiCookie} from 'next-universal-cookie';
+import {HTTPError} from 'ky-universal';
 
-import {accessTokenName, SessionState} from 'core/authenticated';
+import {ACCESS_TOKEN_NAME, SessionState} from 'core/authenticated';
 
-const TEST_VALID_TOKEN = 'base64_valid';
+const FAKE_VALID_TOKEN = 'fake_base64_valid';
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<SessionState>
+  res: NextApiResponse<SessionState | {status: number; message: string}>
 ) {
   applyApiCookie(req, res);
 
-  const authorization = req.headers['authorization'];
-  const cookieAuthorization = req.cookies[accessTokenName];
+  const accessToken =
+    req.headers['authorization'] || req.cookies[ACCESS_TOKEN_NAME];
 
-  if (req.method === 'GET') {
-    if (
-      authorization === TEST_VALID_TOKEN ||
-      cookieAuthorization === TEST_VALID_TOKEN
-    ) {
+  if (req.method === 'GET' && accessToken) {
+    try {
+      // TODO: fetch user from database
+      // const user = await fetch('/api/user');
       res.json({
         me: {
           email: 'john_doe@gmail.com',
         },
-        access_token: TEST_VALID_TOKEN,
+        access_token: FAKE_VALID_TOKEN,
       });
-    } else {
-      res.status(authorization ? 401 : 204);
-      res.clearCookie(accessTokenName);
+    } catch (error) {
+      let status = 401;
+      let message =
+        error instanceof Error ? error.message : 'Authenticated failed';
+
+      if (error instanceof HTTPError) {
+        status = error.response.status;
+        message = error.message;
+      }
+
+      res.clearCookie(ACCESS_TOKEN_NAME);
+      res.status(status).json({status, message});
     }
   } else {
     res.status(204);

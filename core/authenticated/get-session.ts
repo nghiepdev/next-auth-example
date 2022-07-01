@@ -3,12 +3,11 @@ import {applyServerSideCookie} from 'next-universal-cookie';
 import ky from 'ky-universal';
 
 import {SessionState} from './types';
-
-export const accessTokenName = 'auth_session';
+import {ACCESS_TOKEN_NAME} from 'core/authenticated';
 
 export async function getSession(ctx: GetServerSidePropsContext) {
   applyServerSideCookie(ctx.req, ctx.res);
-  const accessToken = ctx.req.cookies[accessTokenName];
+  const accessToken = ctx.req.cookies[ACCESS_TOKEN_NAME];
 
   if (accessToken) {
     try {
@@ -22,7 +21,7 @@ export async function getSession(ctx: GetServerSidePropsContext) {
 
       return data;
     } catch (error) {
-      ctx.res.clearCookie(accessTokenName);
+      ctx.res.clearCookie(ACCESS_TOKEN_NAME);
     }
   }
 

@@ -1,29 +1,5 @@
-import {
-  GetServerSideProps,
-  GetServerSidePropsContext,
-  GetServerSidePropsResult,
-  Redirect,
-} from 'next';
-
-import {SessionState, getSession} from 'core/authenticated';
-
-type WrapperOptions =
-  | {isProtected: false}
-  | {isProtected: true; redirect?: Redirect};
-
-type WrapperGetServerSideProps = <
-  P extends Record<string, unknown> = Record<string, unknown>
->(
-  options: WrapperOptions
-) => (callback: GetServerSideProps<P>) => (
-  context: GetServerSidePropsContext
-) => Promise<
-  GetServerSidePropsResult<
-    P & {
-      session?: SessionState | null;
-    }
-  >
->;
+import {getSession} from './get-session';
+import {WrapperGetServerSideProps} from './types';
 
 export const getServerSideProps: WrapperGetServerSideProps =
   options => callback => {

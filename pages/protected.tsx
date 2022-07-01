@@ -1,7 +1,6 @@
-import * as wrapper from 'core/wrapper';
-import {useSession} from 'core/authenticated';
+import {useSession, withAuth} from 'core/authenticated';
 
-export const getServerSideProps = wrapper.getServerSideProps({
+export const getServerSideProps = withAuth.getServerSideProps({
   isProtected: true,
 })(async context => {
   return {
@@ -15,7 +14,7 @@ const Protected = () => {
   return (
     <div>
       <h1>Protected page</h1>
-      <strong>Signed in as</strong>: {session?.me.email}
+      <strong>Signed in as</strong>: <mark>{session?.me.email}</mark>
     </div>
   );
 };

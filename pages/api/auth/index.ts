@@ -1,7 +1,7 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import {applyApiCookie} from 'next-universal-cookie';
 
-import {accessTokenName, SessionState} from 'core/authenticated';
+import {ACCESS_TOKEN_NAME, SessionState} from 'core/authenticated';
 
 export default function handler(
   req: NextApiRequest,
@@ -10,9 +10,9 @@ export default function handler(
   applyApiCookie(req, res);
 
   if (req.method === 'POST') {
-    res.cookie(accessTokenName, 'base64_valid', {
+    res.cookie(ACCESS_TOKEN_NAME, 'base64_valid', {
       path: '/',
-      maxAge: 999999,
+      maxAge: 2 ** 31,
       httpOnly: true,
       secure: req.headers['x-forwarded-proto'] === 'https',
     });
@@ -25,6 +25,7 @@ export default function handler(
     });
   } else {
     res.status(401);
-    res.end();
   }
+
+  res.end();
 }

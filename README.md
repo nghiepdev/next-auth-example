@@ -28,9 +28,9 @@ const MyComponent = () => {
 ### Render session on server-side
 
 ```ts
-import * as wrapper from 'core/wrapper';
+import {withAuth} from 'core/authenticated';
 
-export const getServerSideProps = wrapper.getServerSideProps({
+export const getServerSideProps = withAuth.getServerSideProps({
   isProtected: false, // <== HERE
 })(async context => {
   return {
@@ -42,9 +42,9 @@ export const getServerSideProps = wrapper.getServerSideProps({
 ### To protected of pages
 
 ```ts
-import * as wrapper from 'core/wrapper';
+import {withAuth} from 'core/authenticated';
 
-export const getServerSideProps = wrapper.getServerSideProps({
+export const getServerSideProps = withAuth.getServerSideProps({
   isProtected: true, // <== HERE
 })(async context => {
   return {

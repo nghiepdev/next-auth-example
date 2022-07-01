@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import {useRouter} from 'next/router';
-import ky from 'ky-universal';
+import ky, {HTTPError} from 'ky-universal';
 
 import {SessionState} from './types';
 import {useAuthContext} from './AuthContext';
@@ -21,10 +21,13 @@ export const useSession = () => {
         if (data) {
           setAuthContext(data);
         }
-      } catch (error: any) {
-        const statusCode = error.response?.status;
-        if (statusCode === 401) {
-          router.replace(`/signin?next=${encodeURIComponent(router.asPath)}`);
+      } catch (error) {
+        if (error instanceof HTTPError) {
+          const status = error.response.status;
+
+          if (status === 401) {
+            router.replace(`/signin?next=${encodeURIComponent(router.asPath)}`);
+          }
         }
       } finally {
         globalFetching = false;
