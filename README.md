@@ -1,7 +1,10 @@
-# Authentication In Next.js
+# Authentication In Next.js (Using Pages Router)
 
 This is an example site to implement authentication support to your Next.js application without library SDK  
 It can be found at https://next-auth-example-psi.vercel.app
+
+> [!NOTE]  
+> For the App Router please refer to the following [main](https://github.com/nghiepdev/next-auth-example) branch.
 
 ## Features
 
